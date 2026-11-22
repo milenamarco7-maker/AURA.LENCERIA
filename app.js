@@ -108,10 +108,9 @@ function cargarCatalogo(productosAMostrar = productos) {
         }).join("");
 
         tarjeta.innerHTML = `
-            <img src="${producto.imagen}" 
-                 alt="${producto.nombre}" 
-                 class="img-producto"
-                 onclick="abrirZoom('${producto.imagen}', '${producto.nombre}')">
+            <img src="${producto.imagen}"
+            alt="${producto.nombre}"
+            class="img-producto">
             <h3>${producto.nombre}</h3>
             <small style="color: #888; display: block; margin-bottom: 5px;">Marca: ${producto.marca}</small>
             <small style="color: #888; display: block; margin-bottom: 5px;">ART: ${producto.art}</small>
@@ -284,9 +283,14 @@ if (window.innerWidth <= 900) {
         sidebar.style.display = "none";
     }
 }
+// --- ZOOM DE IMÁGENES ---
 function abrirZoom(src, alt) {
     const modal = document.getElementById("modal-zoom");
     const img = document.getElementById("imagen-zoom");
+    if (!modal || !img) {
+        console.error("Falta el HTML del modal de zoom (#modal-zoom / #imagen-zoom)");
+        return;
+    }
     img.src = src;
     img.alt = alt;
     img.classList.remove("ampliada");
@@ -295,20 +299,34 @@ function abrirZoom(src, alt) {
 }
 
 function cerrarZoom() {
-    document.getElementById("modal-zoom").classList.remove("activo");
+    const modal = document.getElementById("modal-zoom");
+    if (modal) modal.classList.remove("activo");
     document.body.style.overflow = "";
 }
 
-// Click en la imagen: alterna zoom grande
-document.addEventListener("DOMContentLoaded", () => {
-    const img = document.getElementById("imagen-zoom");
-    img.addEventListener("click", (e) => {
-        e.stopPropagation();
-        img.classList.toggle("ampliada");
-    });
+// Un único listener para todo el zoom
+document.addEventListener("click", (e) => {
+    // 1. Tocar una foto del catálogo: abrir
+    const imgProducto = e.target.closest(".img-producto");
+    if (imgProducto) {
+        abrirZoom(imgProducto.getAttribute("src"), imgProducto.alt);
+        return;
+    }
+
+    // 2. Tocar la foto ampliada: alternar zoom
+    if (e.target.id === "imagen-zoom") {
+        e.target.classList.toggle("ampliada");
+        return;
+    }
+
+    // 3. Tocar el fondo o la ✕: cerrar
+    if (e.target.id === "modal-zoom" ||
+        e.target.classList.contains("contenedor-zoom") ||
+        e.target.classList.contains("cerrar-zoom")) {
+        cerrarZoom();
+    }
 });
 
-// Cerrar con Escape
 document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") cerrarZoom();
 });
