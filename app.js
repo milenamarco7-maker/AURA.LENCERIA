@@ -153,6 +153,19 @@ function filtrarProductos() {
 
     // 5. Renderizamos el resultado
     cargarCatalogo(productosFiltrados);
+    // Si estamos en celular, ocultamos la barra de filtros tras filtrar
+    if (window.innerWidth <= 768) {
+        const sidebar = document.querySelector(".sidebar-filtros");
+        if (sidebar) {
+            sidebar.classList.add("oculto-movil");
+        }
+    }
+}
+function toggleFiltros() {
+    const sidebar = document.querySelector(".sidebar-filtros");
+    if (sidebar) {
+        sidebar.classList.toggle("oculto-movil");
+    }
 }
 
 // --- 4. LÓGICA DEL CARRITO ---
@@ -251,6 +264,8 @@ function enviarPedidoWhatsApp() {
     const numeroWhatsApp = "2617106585"; 
     window.open(`https://wa.me/${numeroWhatsApp}?text=${mensaje}`, '_blank');
 }
+
+
 
 // Inicialización
 cargarCatalogo();

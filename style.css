@@ -279,3 +279,13 @@ body {
     width: auto;
     object-fit: contain;
 }
+.btn-toggle-filtros {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .grid-productos {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+}
