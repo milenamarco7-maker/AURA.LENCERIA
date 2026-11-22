@@ -153,19 +153,13 @@ function filtrarProductos() {
 
     // 5. Renderizamos el resultado
     cargarCatalogo(productosFiltrados);
-    // Si estamos en celular, ocultamos la barra de filtros tras filtrar
-    if (window.innerWidth <= 768) {
-        const sidebar = document.querySelector(".sidebar-filtros");
-        if (sidebar) {
-            sidebar.classList.add("oculto-movil");
-        }
-    }
-}
-function toggleFiltros() {
+
+    if (window.innerWidth <= 900) {
     const sidebar = document.querySelector(".sidebar-filtros");
     if (sidebar) {
-        sidebar.classList.toggle("oculto-movil");
+        sidebar.style.display = "none";
     }
+}
 }
 
 // --- 4. LÓGICA DEL CARRITO ---
@@ -270,3 +264,22 @@ function enviarPedidoWhatsApp() {
 // Inicialización
 cargarCatalogo();
 renderizarCarrito();
+
+function toggleFiltros() {
+    const sidebar = document.querySelector(".sidebar-filtros");
+    if (!sidebar) return;
+
+    if (sidebar.style.display === "none") {
+        sidebar.style.display = "block";
+    } else {
+        sidebar.style.display = "none";
+    }
+}
+
+// 👇 PASO 2: Al cargar la página, si es celular, arranca con los filtros ocultos 👇
+if (window.innerWidth <= 900) {
+    const sidebar = document.querySelector(".sidebar-filtros");
+    if (sidebar) {
+        sidebar.style.display = "none";
+    }
+}
