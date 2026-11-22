@@ -96,33 +96,42 @@ function cargarCatalogo(productosAMostrar = productos) {
     }
 
     productosAMostrar.forEach(producto => {
-        const tarjeta = document.createElement("div");
-        tarjeta.classList.add("tarjeta-producto");
+    const tarjeta = document.createElement("div");
+    tarjeta.classList.add("tarjeta-producto");
 
-        const opcionesTalles = producto.talle.map(item => {
-            if (item.disponible) {
-                return `<option value="${item.talle}">${item.talle}</option>`;
-            } else {
-                return `<option value="${item.talle}" disabled>${item.talle} (Sin stock)</option>`;
-            }
-        }).join("");
+    // ¿Hay stock en al menos un talle?
+    const hayStock = producto.talle.some(item => item.disponible);
+    if (!hayStock) tarjeta.classList.add("sin-stock");
 
-        tarjeta.innerHTML = `
+    const opcionesTalles = producto.talle.map(item => {
+        if (item.disponible) {
+            return `<option value="${item.talle}">${item.talle}</option>`;
+        } else {
+            return `<option value="${item.talle}" disabled>${item.talle} (Sin stock)</option>`;
+        }
+    }).join("");
+
+    tarjeta.innerHTML = `
+        <div class="contenedor-imagen">
+            ${!hayStock ? '<span class="etiqueta-sin-stock">SIN STOCK</span>' : ''}
             <img src="${producto.imagen}"
-            alt="${producto.nombre}"
-            class="img-producto">
-            <h3>${producto.nombre}</h3>
-            <small style="color: #888; display: block; margin-bottom: 5px;">Marca: ${producto.marca}</small>
-            <small style="color: #888; display: block; margin-bottom: 5px;">ART: ${producto.art}</small>
-            <p class="precio">$${producto.precio.toLocaleString('es-AR')}</p>
-            <select id="talle-${producto.id}">
-                ${opcionesTalles}
-            </select>
-            <button onclick="agregarAlCarrito(${producto.id})">Agregar al Carrito</button>
-        `;
+                 alt="${producto.nombre}"
+                 class="img-producto">
+        </div>
+        <h3>${producto.nombre}</h3>
+        <small style="color: #888; display: block; margin-bottom: 5px;">Marca: ${producto.marca}</small>
+        <small style="color: #888; display: block; margin-bottom: 5px;">ART: ${producto.art}</small>
+        <p class="precio">$${producto.precio.toLocaleString('es-AR')}</p>
+        <select id="talle-${producto.id}" ${!hayStock ? 'disabled' : ''}>
+            ${opcionesTalles}
+        </select>
+        <button ${!hayStock ? 'disabled' : `onclick="agregarAlCarrito(${producto.id})"`}>
+            ${hayStock ? 'Agregar al Carrito' : 'Sin stock'}
+        </button>
+    `;
 
-        contenedorProductos.appendChild(tarjeta);
-    });
+    contenedorProductos.appendChild(tarjeta);
+});
 }
 // --- LÓGICA DE FILTRADO ---
 function filtrarProductos() {
@@ -164,9 +173,13 @@ function filtrarProductos() {
 
 // --- 4. LÓGICA DEL CARRITO ---
 function agregarAlCarrito(idProducto) {
+    const productoEncontrado = productos.find(p => p.id === idProducto);
+    if (!productoEncontrado || !productoEncontrado.talle.some(t => t.disponible)) {
+        return; // sin stock: no se agrega
+    }
+
     const selectTalle = document.getElementById(`talle-${idProducto}`);
     const talleElegido = selectTalle.value;
-    const productoEncontrado = productos.find(p => p.id === idProducto);
     
     // Buscamos si ya existe el mismo producto con el mismo talle exacto
     const itemExistente = carrito.find(item => item.id === idProducto && item.talle === talleElegido);

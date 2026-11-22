@@ -395,3 +395,41 @@ body {
     cursor: pointer;
     z-index: 1001;
 }
+.contenedor-imagen {
+    position: relative;
+}
+
+.etiqueta-sin-stock {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    background: #b3a7a6;
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 5px 12px;
+    border-radius: 0 6px 6px 0;
+    z-index: 2;
+    pointer-events: none; /* no interfiere con el zoom */
+}
+
+.tarjeta-producto.sin-stock .img-producto {
+    opacity: 0.55;
+    filter: grayscale(60%);
+}
+
+.tarjeta-producto button:disabled {
+    background-color: #ccc;
+    color: #777;
+    cursor: not-allowed;
+}
+
+.tarjeta-producto button:disabled:hover {
+    background-color: #ccc; /* evita que cambie al pasar el mouse */
+}
+
+.tarjeta-producto select:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
