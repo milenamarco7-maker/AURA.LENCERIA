@@ -314,3 +314,23 @@ body {
         object-fit: cover;
     }
 }
+.btn-toggle-filtros {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .btn-toggle-filtros {
+        display: inline-flex !important;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 12px;
+        padding: 8px 14px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        color: #333;
+        font-family: inherit;
+        font-size: 0.95rem;
+        cursor: pointer;
+    }
+}
