@@ -83,10 +83,17 @@ body {
 }
 
 .tarjeta-producto .precio {
-    color: #a4849f;
+    color: #ce934f;
     font-weight: 600;
     font-size: 16px;
     margin-bottom: 15px;
+}
+
+.tarjeta-producto select {
+    display: block;
+    width: 100%;
+    margin: 0 0 12px;   /* espacio debajo del selector, antes del botón */
+    padding: 8px;
 }
 
 .tarjeta-producto button {
@@ -98,6 +105,7 @@ body {
     cursor: pointer;
     font-weight: 500;
     width: 100%;
+    margin-top: 4px;    /* nuevo */
     transition: background 0.2s;
 }
 
