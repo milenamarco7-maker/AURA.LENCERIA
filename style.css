@@ -83,14 +83,14 @@ body {
 }
 
 .tarjeta-producto .precio {
-    color: #bc6c25;
+    color: #a4849f;
     font-weight: 600;
     font-size: 16px;
     margin-bottom: 15px;
 }
 
 .tarjeta-producto button {
-    background-color: #c08ab7;
+    background-color: #a4849f;
     color: white;
     border: none;
     padding: 10px 15px;
