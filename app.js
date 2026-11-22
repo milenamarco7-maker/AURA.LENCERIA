@@ -7,7 +7,7 @@ const productos = [
         talle: [{talle: "85", disponible: false}, {talle: "90", disponible: false}, {talle: "95", disponible: true}, {talle: "100", disponible: false}], 
         imagen: "fotos/conj_kaury (2).jpg" },
     { id: 3, nombre: "KAURY Conjunto de algodón y puntilla taza soft con push up y colaless", marca: "Kaury", art: "4950", precio: 18500, tipo: "conjunto",
-        talle: [{talle: "85", disponible: false}, {talle: "90", disponible: false}, {talle: "95", disponible: true}, {talle: "100", disponible: false}], 
+        talle: [{talle: "85", disponible: false}, {talle: "90", disponible: true}, {talle: "95", disponible: false}, {talle: "100", disponible: false}], 
         imagen: "fotos/conj_kaury (3).jpg" },
     
         //SIGRY
