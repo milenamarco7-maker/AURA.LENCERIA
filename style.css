@@ -90,7 +90,7 @@ body {
 }
 
 .tarjeta-producto button {
-    background-color: #d4a373;
+    background-color: #c08ab7;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -333,4 +333,57 @@ body {
         font-size: 0.95rem;
         cursor: pointer;
     }
+}
+.img-producto {
+    width: 100%;
+    height: auto;
+    cursor: zoom-in;
+}
+
+#modal-zoom {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+#modal-zoom.activo {
+    display: flex;
+}
+
+.contenedor-zoom {
+    max-width: 95vw;
+    max-height: 95vh;
+    overflow: auto; /* permite desplazarse cuando está ampliada */
+}
+
+#imagen-zoom {
+    display: block;
+    max-width: 95vw;
+    max-height: 90vh;
+    object-fit: contain;
+    cursor: zoom-in;
+    transition: transform 0.2s;
+}
+
+#imagen-zoom.ampliada {
+    max-width: none;
+    max-height: none;
+    width: 180%; /* tamaño ampliado */
+    cursor: zoom-out;
+}
+
+.cerrar-zoom {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    font-size: 40px;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
 }

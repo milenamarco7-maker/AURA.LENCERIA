@@ -94,22 +94,24 @@ function cargarCatalogo(productosAMostrar = productos) {
         contenedorProductos.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: #888;">No se encontraron productos.</p>`;
         return;
     }
-    
+
     productosAMostrar.forEach(producto => {
         const tarjeta = document.createElement("div");
         tarjeta.classList.add("tarjeta-producto");
-        
+
         const opcionesTalles = producto.talle.map(item => {
-        if (item.disponible) {
-            return `<option value="${item.talle}">${item.talle}</option>`;
-        } else {
-            return `<option value="${item.talle}" disabled>${item.talle} (Sin stock)</option>`;
-        }
-    })
-    .join("");
-        
+            if (item.disponible) {
+                return `<option value="${item.talle}">${item.talle}</option>`;
+            } else {
+                return `<option value="${item.talle}" disabled>${item.talle} (Sin stock)</option>`;
+            }
+        }).join("");
+
         tarjeta.innerHTML = `
-            <img src="${producto.imagen}" alt="${producto.nombre}" style="width: 100%; height: auto;">
+            <img src="${producto.imagen}" 
+                 alt="${producto.nombre}" 
+                 class="img-producto"
+                 onclick="abrirZoom('${producto.imagen}', '${producto.nombre}')">
             <h3>${producto.nombre}</h3>
             <small style="color: #888; display: block; margin-bottom: 5px;">Marca: ${producto.marca}</small>
             <small style="color: #888; display: block; margin-bottom: 5px;">ART: ${producto.art}</small>
@@ -119,11 +121,10 @@ function cargarCatalogo(productosAMostrar = productos) {
             </select>
             <button onclick="agregarAlCarrito(${producto.id})">Agregar al Carrito</button>
         `;
-        
+
         contenedorProductos.appendChild(tarjeta);
     });
 }
-
 // --- LÓGICA DE FILTRADO ---
 function filtrarProductos() {
     // 1. Capturamos el buscador de texto
@@ -283,3 +284,31 @@ if (window.innerWidth <= 900) {
         sidebar.style.display = "none";
     }
 }
+function abrirZoom(src, alt) {
+    const modal = document.getElementById("modal-zoom");
+    const img = document.getElementById("imagen-zoom");
+    img.src = src;
+    img.alt = alt;
+    img.classList.remove("ampliada");
+    modal.classList.add("activo");
+    document.body.style.overflow = "hidden";
+}
+
+function cerrarZoom() {
+    document.getElementById("modal-zoom").classList.remove("activo");
+    document.body.style.overflow = "";
+}
+
+// Click en la imagen: alterna zoom grande
+document.addEventListener("DOMContentLoaded", () => {
+    const img = document.getElementById("imagen-zoom");
+    img.addEventListener("click", (e) => {
+        e.stopPropagation();
+        img.classList.toggle("ampliada");
+    });
+});
+
+// Cerrar con Escape
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") cerrarZoom();
+});
