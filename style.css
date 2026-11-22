@@ -288,21 +288,29 @@ body {
 }
 
 @media (max-width: 900px) {
-    .btn-toggle-filtros {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        margin-bottom: 12px;
-        padding: 8px 14px;
-        border-radius: 8px;
-        border: 1px solid #ddd;
-        background-color: #fff;
-        font-family: inherit;
-        font-size: 0.95rem;
-        cursor: pointer;
+    .layout-tienda {
+        display: block;
     }
 
-    .sidebar-filtros.oculto-movil {
-        display: none !important;
+    .contenido-catalogo {
+        width: 100%;
+    }
+
+    .grid-productos {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+        width: 100%;
+    }
+
+    .grid-productos > div {
+        min-width: 0;
+        padding: 10px;
+    }
+
+    .grid-productos img {
+        width: 100%;
+        height: 170px;
+        object-fit: cover;
     }
 }
