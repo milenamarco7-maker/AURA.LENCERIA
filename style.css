@@ -283,9 +283,26 @@ body {
     display: none;
 }
 
-@media (max-width: 768px) {
-    .grid-productos {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+.btn-toggle-filtros {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .btn-toggle-filtros {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-bottom: 12px;
+        padding: 8px 14px;
+        border-radius: 8px;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        font-family: inherit;
+        font-size: 0.95rem;
+        cursor: pointer;
+    }
+
+    .sidebar-filtros.oculto-movil {
+        display: none !important;
     }
 }
