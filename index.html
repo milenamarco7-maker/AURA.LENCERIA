@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AURA LENCERÍA | Tienda Online</title>
+    <!-- Favicon (ícono de la pestaña) -->
+    <link rel="icon" type="image/png" href="fotos/logo.png">
+    <!-- Hoja de estilos CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Fuente desde Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Cabecera de la Página -->
+    <header class="header">
+        <div class="logo">
+            <img src="fotos/logo.png" alt="Logo Aura Lencería" class="logo-img">
+        </div>
+        <div class="carrito-icono" onclick="toggleCarrito()">
+            🛒 Carrito <span id="contador-carrito">0</span>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="contenedor-principal">
+        <section class="seccion-catalogo">
+            <h2>Nuestros Productos</h2>
+
+            <!-- Barra de Filtros y Buscador -->
+            <div class="filtros-contenedor">
+                <input 
+                    type="text" 
+                    id="input-buscador" 
+                    placeholder="🔍 Buscar producto..." 
+                    oninput="filtrarProductos()"
+                >
+                
+                <select id="select-marca" onchange="filtrarProductos()">
+                    <option value="todos">Ver todo</option>
+                    <option value="Kaury">Kaury</option>
+                    <option value="Sigry">Sigry</option>
+                    <option value="Lara Teens">Lara Teens</option>
+                    <option value="Belen">Belen</option>
+                    <option value="Meraki">Meraki</option>
+                </select>
+            </div>
+
+            <div class="layout-tienda">
+                <aside class="sidebar-filtros">
+                    <h3>Filtrar por producto</h3>
+                    <div class="grupo-filtro">
+                        <label><input type="checkbox" name="tipo" value="conjunto" onchange="filtrarProductos()"> Conjuntos</label>
+                        <label><input type="checkbox" name="tipo" value="pack bombachas" onchange="filtrarProductos()"> Pack bombachas</label>
+                    </div>
+                </aside>
+
+                <div class="contenido-catalogo">
+                    <div id="contenedor-productos" class="grid-productos">
+                        <!-- Los productos se cargan acá automáticamente -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Panel Lateral del Carrito -->
+        <aside id="panel-carrito" class="panel-carrito">
+            <div class="carrito-header">
+                <h3>Tu Carrito de Compras</h3>
+                <button class="btn-cerrar" onclick="toggleCarrito()">✕</button>
+            </div>
+            
+            <div id="lista-carrito" class="lista-carrito">
+                <p class="carrito-vacio">El carrito está vacío</p>
+            </div>
+
+            <div class="carrito-footer">
+                <div class="total-fila">
+                    <span>Total:</span>
+                    <span id="precio-total">$0</span>
+                </div>
+                <button class="btn-whatsapp" onclick="enviarPedidoWhatsApp()">Enviar pedido por WhatsApp 📲</button>
+            </div>
+        </aside>
+    </main>
+
+    <!-- Lógica en JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
