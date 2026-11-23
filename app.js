@@ -37,7 +37,7 @@ const productos = [
     { id: 11, nombre: "LARA TEENS Conjunto de morley triángulo soft sin push up con tangaless regulable", marca: "Lara Teens",art:"4285", precio: 18500, tipo: "conjunto",
         talle: [{talle: "85", disponible: false}, {talle: "90", disponible: true}, {talle: "95", disponible: false}, {talle: "100", disponible: false}], 
         imagen: "fotos/conj_lara (3).jpg" },
-    { id: 12, nombre: "LARA TEENS Conjunto NO DISPONIBLE", marca: "Lara Teens", art: "4650", precio: 18500, tipo: "conjunto",
+    { id: 12, nombre: "LARA TEENS Conjunto de algodón y lycra triángulo soft sin push up con colaless", marca: "Lara Teens", art: "4650", precio: 18500, tipo: "conjunto",
         talle: [{talle: "85", disponible: false}, {talle: "90", disponible: false}, {talle: "95", disponible: false}, {talle: "100", disponible: false}], 
         imagen: "fotos/conj_lara (4).jpg" },
     { id: 13, nombre: "LARA TEENS Conjunto de morley triángulo soft sin push up con tangaless regulable", marca: "Lara Teens", art: "4285", precio: 18500, tipo: "conjunto",
@@ -45,7 +45,7 @@ const productos = [
         imagen: "fotos/conj_lara (5).jpg" },
     
     //BELEN
-    { id: 14, nombre: "BELEN Conjunto NO DISPONIBLE", marca: "Belen", art:"9210", precio: 17500, tipo: "conjunto",
+    { id: 14, nombre: "BELEN Conjunto de algodón y lycra soft sin push up con colaless", marca: "Belen", art:"9210", precio: 17500, tipo: "conjunto",
         talle: [{talle: "85", disponible: false}, {talle: "90", disponible: false}, {talle: "95", disponible: false}, {talle: "100", disponible: false}], 
         imagen: "fotos/conj_belen.jpg" },
     { id: 15, nombre: "BELEN Conjunto de algodón y lycra soft sin push up con colaless", marca: "Belen", art:"9210", precio: 17500, tipo: "conjunto",
